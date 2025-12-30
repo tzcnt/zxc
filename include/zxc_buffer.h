@@ -11,6 +11,10 @@
 
 #include <stddef.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*
  * ============================================================================
  * ZXC Compression Library - Public API (Buffer-Based)
@@ -70,5 +74,9 @@ size_t zxc_compress(const void* src, size_t src_size, void* dst, size_t dst_capa
  */
 size_t zxc_decompress(const void* src, size_t src_size, void* dst, size_t dst_capacity,
                       int checksum_enabled);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // ZXC_BUFFER_H

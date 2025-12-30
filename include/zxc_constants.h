@@ -9,6 +9,10 @@
 #ifndef ZXC_CONSTANTS_H
 #define ZXC_CONSTANTS_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*
  * ============================================================================
  * ZXC Compression Library - Public Constants
@@ -40,5 +44,9 @@
 #define ZXC_LEVEL_DEFAULT (3)   // Recommended: ratio > LZ4, decode speed > LZ4
 #define ZXC_LEVEL_BALANCED (4)  // Good ratio, good decode speed
 #define ZXC_LEVEL_COMPACT (5)   // High density. Best for storage/firmware/assets.
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // ZXC_CONSTANTS_H
