@@ -16,8 +16,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../../include/zxc_sans_io.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -682,51 +680,6 @@ int zxc_write_gnr_header_and_desc(uint8_t* dst, size_t rem, const zxc_gnr_header
  */
 int zxc_read_gnr_header_and_desc(const uint8_t* src, size_t len, zxc_gnr_header_t* gh,
                                  zxc_section_desc_t desc[4]);
-
-/**
- * @brief Internal wrapper function to decompress a single chunk of data.
- *
- * This function handles the decompression of a specific chunk from the source
- * buffer into the destination buffer using the provided compression context. It
- * serves as an abstraction layer over the core decompression logic.
- *
- * @param ctx     Pointer to the ZXC compression context structure containing
- *                internal state and configuration.
- * @param src     Pointer to the source buffer containing compressed data.
- * @param src_sz  Size of the compressed data in the source buffer (in bytes).
- * @param dst     Pointer to the destination buffer where decompressed data will
- * be written.
- * @param dst_cap Capacity of the destination buffer (maximum bytes that can be
- * written).
- *
- * @return int    Returns 0 on success, or a negative error code on failure.
- *                Specific error codes depend on the underlying ZXC
- * implementation.
- */
-int zxc_decompress_chunk_wrapper(zxc_cctx_t* ctx, const uint8_t* src, size_t src_sz, uint8_t* dst,
-                                 size_t dst_cap);
-
-/**
- * @brief Wraps the internal chunk compression logic.
- *
- * This function acts as a wrapper to compress a single chunk of data using the
- * provided compression context. It handles the interaction with the underlying
- * compression algorithm for a specific block of memory.
- *
- * @param ctx   Pointer to the ZXC compression context containing configuration
- *              and state.
- * @param chunk Pointer to the source buffer containing the raw data to
- * compress.
- * @param src_sz    The size of the source chunk in bytes.
- * @param dst   Pointer to the destination buffer where compressed data will be
- * written.
- * @param dst_cap   The capacity of the destination buffer (maximum bytes to write).
- *
- * @return The number of bytes written to the destination buffer on success,
- *         or a negative error code on failure.
- */
-int zxc_compress_chunk_wrapper(zxc_cctx_t* ctx, const uint8_t* chunk, size_t src_sz, uint8_t* dst,
-                               size_t dst_cap);
 
 #ifdef __cplusplus
 }
