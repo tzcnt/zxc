@@ -15,9 +15,12 @@ set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
 # Compilation options configuration
-if(MSVC)
+if(CMAKE_C_COMPILER_ID MATCHES "MSVC")
     add_compile_options(/O2 /W3 /arch:AVX2)
     add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
+elseif(CMAKE_C_COMPILER_ID MATCHES "Clang")
+    add_compile_options(-O3 -march=native -flto -fomit-frame-pointer -fstrict-aliasing -ffast-math -pthread -Wall -Wextra -D_GNU_SOURCE)
+    add_link_options("-fuse-ld=lld")
 else()
     add_compile_options(-O3 -march=native -flto -fomit-frame-pointer -fstrict-aliasing -ffast-math -pthread -Wall -Wextra -D_GNU_SOURCE)
 endif()
